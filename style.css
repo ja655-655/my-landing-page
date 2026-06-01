@@ -84,10 +84,10 @@ body {
 }
 
 .profile-img {
-    width: 250px;
-    height: 250px;
+    width: 320px;
+    height: 320px;
     object-fit: cover; /* Crops image neatly inside dimensions without stretching */
-    object-position: center;
+    object-position: center20%;
     border-radius: 50%; /* Perfect circle implementation */
     border: 2px solid rgba(255, 255, 255, 0.15); /* Clean border accent */
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); /* Soft shadow for layer depth */
@@ -128,7 +128,8 @@ body {
     }
 
     .profile-img { 
-        width: 220px;  /* Resized neatly for mobile screens */
-        height: 220px; /* Kept equal to width to prevent stretching or turning oval */
+        width: 260px;  /* Resized neatly for mobile screens */
+        height: 260px;
+        object-position: center20%;/* Kept equal to width to prevent stretching or turning oval */
     }
 }
