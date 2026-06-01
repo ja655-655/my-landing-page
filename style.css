@@ -1,4 +1,4 @@
-/* Core Setup */
+/* Core Layout Normalization Matrix */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -10,30 +10,30 @@ body {
     color: #FFFFFF;
     font-family: system-ui, -apple-system, sans-serif;
     line-height: 1.6;
-    /* Smooth scrolling animation when clicking anchor links! */
     scroll-behavior: smooth; 
 }
 
-/* 1. OPTION 2: FROSTED GLASS NAVIGATION BAR */
+/* 1. FROSTED GLASS NAVIGATION BAR CONFIGURATION */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Pushes logo left, button right */
+    justify-content: space-between;
     align-items: center;
-    padding: 16px 40px; /* Sleek, slim profile */
+    padding: 16px 40px;
     width: 100%;
     
-    /* Transparent background color with backing blur filter */
-    background-color: rgba(11, 15, 25, 0.75); 
-    backdrop-filter: blur(12px);               /* Blurs text/images scrolling behind it */
-    -webkit-backdrop-filter: blur(12px);       /* Safari browser engine rendering safety */
+    /* Slightly lighter transparent slate background so the glass layer pops */
+    background-color: rgba(20, 27, 45, 0.7); 
     
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Clean hairline divider link */
-    position: sticky; /* Locks navbar to the top viewport edge when scrolling */
+    /* Blur rendering engines */
+    backdrop-filter: blur(16px) saturate(180%);               
+    -webkit-backdrop-filter: blur(16px) saturate(180%);       
+    
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    position: sticky; 
     top: 0;
-    z-index: 1000; /* Keeps nav layer safely stacked over content elements */
+    z-index: 1000; 
 }
 
-/* Alignment management to keep navbar elements centered with your 1200px grid margins */
 .logo { 
     font-weight: 700; 
     font-size: 1.2rem; 
@@ -49,17 +49,14 @@ body {
 }
 
 .nav-links a {
-    color: #FFFFFF; /* Preps future navigation links to be white */
+    color: #FFFFFF;
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
     opacity: 0.8;
     transition: opacity 0.2s ease;
 }
-
-.nav-links a:hover {
-    opacity: 1; 
-}
+.nav-links a:hover { opacity: 1; }
 
 .btn-contact {
     background: #818CF8;
@@ -72,24 +69,21 @@ body {
 }
 .btn-contact:hover { background: #6366F1; }
 
-
-/* 2. THE CHOSEN SPLIT GRID (50/50 Midline Split) */
+/* 2. SPLIT HERO GRID (50/50 Desktop Alignment Layout) */
 .split-hero {
     display: grid;
-    /* Divide the container into two perfectly equal fractional halves */
     grid-template-columns: 1fr 1fr; 
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 80px 40px;
-    gap: 60px; /* Space between text and image */
+    gap: 60px; 
 }
 
-/* Left Side Control */
 .hero-left {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Aligns text left */
+    align-items: flex-start; 
 }
 
 .badge {
@@ -113,29 +107,84 @@ body {
     font-size: 1.1rem;
 }
 
-/* Right Side Control (Image Tuning) */
 .hero-right {
     display: flex;
     justify-content: center;
 }
 
-/* Desktop layout rules for your circle profile avatar framing */
 .profile-img {
     width: 320px;
     height: 320px;
-    object-fit: cover; /* Crops image neatly inside dimensions without stretching */
-    object-position: center 15%; /* Shifts crop down slightly so your head is not cut off */
-    border-radius: 50%; /* Perfect circle layout styling */
-    border: 2px solid rgba(255, 255, 255, 0.15); /* Clean border glow accent */
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); /* Premium card layer depth drop-shadow */
+    object-fit: cover; 
+    object-position: center 15%; /* Crops the photo down slightly to safe space above your head */
+    border-radius: 50%; 
+    border: 2px solid rgba(255, 255, 255, 0.15); 
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); 
 }
 
+/* 2.5 TECH STACK INFINITE SLIDER LOOP PROPERTIES */
+.tech-section {
+    max-width: 1200px;
+    margin: 80px auto 40px auto; 
+    padding: 0 40px;
+    text-align: center;
+}
+
+.tech-title {
+    color: #9CA3AF;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+}
+
+.slider-container {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* Edge gradients that fade items smoothly at container endpoints */
+    mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+}
+
+.slider-track {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+    animation: scrollTrack 25s linear infinite; /* Controlled, clean glide speed */
+}
+
+.tech-icon {
+    background-color: #1E293B; 
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #FFFFFF;
+    padding: 12px 24px;
+    border-radius: 30px; 
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap; 
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.slider-track:hover {
+    animation-play-state: paused; /* Pauses carousel movement on cursor interaction */
+}
+
+@keyframes scrollTrack {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
 
 /* 3. CONTACT SECTION TARGET */
 .contact-section {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 120px 40px;
+    padding: 80px 40px 120px 40px; 
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -143,33 +192,31 @@ body {
 .contact-section h2 { margin-bottom: 12px; }
 .email-link { color: #818CF8; font-size: 1.2rem; font-weight: 600; }
 
-
-/* Mobile Adaptation */
+/* Mobile Viewport Adaptation Engine */
 @media (max-width: 768px) {
     .navbar {
         padding: 16px 20px;
     }
 
     .split-hero {
-        /* On small screens, stack columns into 1 vertical lane instead of a split grid */
         grid-template-columns: 1fr; 
         padding: 40px 20px;
         gap: 40px;
         text-align: center;
     }
 
-    .hero-left {
-        align-items: center;
-    }
+    .hero-left { align-items: center; }
+    .hero-left h1 { font-size: 2.2rem; }
 
-    .hero-left h1 {
-        font-size: 2.2rem;
+    .tech-section {
+        margin: 40px auto 20px auto;
+        padding: 0 20px;
     }
+    .slider-track { gap: 20px; }
 
-    /* Scaling safety properties so the circular avatar looks clean on phone screens */
     .profile-img { 
         width: 260px !important;  
         height: 260px !important; 
-        object-position: center 15% !important; /* Preserves your head framing layout on mobile */
+        object-position: center 15% !important; 
     }
 }
