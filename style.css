@@ -134,7 +134,7 @@ body {
 }
 
 /* ==========================================================================
-   3. TECH STACK CAROUSEL (FRAMER-INSPIRED SPEC)
+   3. TECH STACK CAROUSEL (FIXED SEAMLESS LOOP ENGINE)
    ========================================================================== */
 .tech-section {
     max-width: 100%;
@@ -156,7 +156,8 @@ body {
 .slider-container {
     width: 100%;
     display: flex;
-    align-items: center;
+    overflow: hidden;
+    gap: 16px;
     position: relative;
     mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
@@ -165,11 +166,11 @@ body {
 .slider-track {
     display: flex;
     gap: 16px; 
-    width: max-content;
+    flex-shrink: 0;
     animation: scrollTrack 25s linear infinite;
 }
 
-.slider-track:hover {
+.slider-container:hover .slider-track {
     animation-play-state: paused;
 }
 
@@ -348,14 +349,14 @@ body {
 }
 
 /* ==========================================================================
-   5. ANIMATION ENGINE
+   5. ANIMATION ENGINE (GAP COUPLING INTEGRATION)
    ========================================================================== */
 @keyframes scrollTrack {
     0% {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-50%); 
+        transform: translateX(calc(-100% - 16px)); 
     }
 }
 
@@ -456,4 +457,12 @@ body {
     .nav-links {
         display: none; 
     }
+}
+
+/* ==========================================================================
+   9. UTILITIES & HIGHLIGHTS
+   ========================================================================== */
+.keyword {
+    color: #818CF8;
+    font-weight: 600;
 }
