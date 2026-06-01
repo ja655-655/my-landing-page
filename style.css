@@ -86,10 +86,11 @@ body {
 .profile-img {
     width: 250px;
     height: 250px;
-    object-fit: cover; /* Crops image neatly inside the dimensions without stretching */
+    object-fit: cover; /* Crops image neatly inside dimensions without stretching */
     object-position: center;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);/* Soft corporate-modern rounded edges */
+    border-radius: 50%; /* Perfect circle implementation */
+    border: 2px solid rgba(255, 255, 255, 0.15); /* Clean border accent */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); /* Soft shadow for layer depth */
 }
 
 /* 3. CONTACT SECTION TARGET */
@@ -106,11 +107,28 @@ body {
 
 /* Mobile Adaptation */
 @media (max-width: 768px) {
+    .navbar {
+        padding: 20px;
+    }
+
     .split-hero {
         /* On small screens, stack columns into 1 vertical lane instead of a split grid */
         grid-template-columns: 1fr; 
         padding: 40px 20px;
         gap: 40px;
+        text-align: center;
     }
-    .profile-img { height: 350px; }
+
+    .hero-left {
+        align-items: center;
+    }
+
+    .hero-left h1 {
+        font-size: 2.2rem;
+    }
+
+    .profile-img { 
+        width: 220px;  /* Resized neatly for mobile screens */
+        height: 220px; /* Kept equal to width to prevent stretching or turning oval */
+    }
 }
