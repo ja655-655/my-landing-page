@@ -127,15 +127,21 @@ body {
     width: 320px;
     height: 320px;
     object-fit: cover; 
-    object-position: center 27%; 
+    object-position: center 15%; 
     border-radius: 50%; 
     border: 2px solid rgba(255, 255, 255, 0.15); 
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); 
 }
 
 /* ==========================================================================
-   3. TECH STACK CAROUSEL (FIXED SEAMLESS LOOP ENGINE)
+   3. TECH STACK CAROUSEL (ULTRA-SMOOTH HARDWARE ACCELERATED)
    ========================================================================== */
+:root {
+    /* Updated calculation metrics for the expanded 9-item stack array to eliminate dead space completely */
+    --gap-width: 16px;
+    --track-width: 1380px; 
+}
+
 .tech-section {
     max-width: 100%;
     overflow: hidden;
@@ -157,7 +163,7 @@ body {
     width: 100%;
     display: flex;
     overflow: hidden;
-    gap: 16px;
+    gap: var(--gap-width);
     position: relative;
     mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
@@ -165,8 +171,13 @@ body {
 
 .slider-track {
     display: flex;
-    gap: 16px; 
+    gap: var(--gap-width); 
+    width: var(--track-width);
     flex-shrink: 0;
+    
+    /* Force GPU rendering to bypass CPU sub-pixel layout rounding bugs */
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
     animation: scrollTrack 25s linear infinite;
 }
 
@@ -345,18 +356,18 @@ body {
 }
 
 .experience-card:hover .accomplishments-list li::before {
-    background-color: #818CF8; /* Dots light up on box hover state */
+    background-color: #818CF8; 
 }
 
 /* ==========================================================================
-   5. ANIMATION ENGINE (GAP COUPLING INTEGRATION)
+   5. ANIMATION ENGINE (GPU LAYER COMPULSION)
    ========================================================================== */
 @keyframes scrollTrack {
     0% {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
     100% {
-        transform: translateX(calc(-100% - 16px)); 
+        transform: translate3d(calc(-1 * var(--track-width) - var(--gap-width)), 0, 0); 
     }
 }
 
@@ -433,7 +444,7 @@ body {
    ========================================================================== */
 @media (max-width: 900px) {
     .split-experience-grid {
-        grid-template-columns: 1fr; /* Responsively wraps columns cleanly on smaller devices */
+        grid-template-columns: 1fr; 
         gap: 20px;
     }
     .experience-card {
