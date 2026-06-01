@@ -1,15 +1,77 @@
-/* Target the entire page background */
-body {
-    background-color: #0F172A; /* Deep modern slate gray */
-    color: #F8FAFC;            /* Soft off-white text */
-    font-family: system-ui, sans-serif;
-    text-align: center;
-    padding-top: 150px;
+/* 1. Global Reset & Page Setup */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* Target just the h1 heading tag */
-h1 {
-    font-size: 3rem;
-    color: #38BDF8;            /* Bright electric blue accent */
-    letter-spacing: -1px;      /* Modern tight font tracking */
+body {
+    background-color: #0B0F19; /* Deep, high-end slate dark mode */
+    color: #F3F4F6;            /* Crisp off-white for readability */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+}
+
+/* 2. Navbar Styling */
+.navbar {
+    padding: 24px 40px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* 3. Hero Section (Centering Content) */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* Centers everything horizontally */
+    text-align: center;
+    padding: 100px 20px;
+    max-width: 800px;
+    margin: 0 auto;         /* Centers the entire container on the desktop screen */
+}
+
+/* 4. The Accent Badge */
+.badge {
+    background: rgba(129, 140, 248, 0.1);
+    color: #818CF8;         /* The indigo color from your original file! */
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    border: 1px solid rgba(129, 140, 248, 0.2);
+}
+
+/* 5. Modern Typography */
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: #FFFFFF;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: #9CA3AF;         /* Subdued gray so the headline stands out more */
+    margin-bottom: 40px;
+    max-width: 600px;
+}
+
+/* 6. Interactive Pill Button */
+.btn {
+    background: #FFFFFF;
+    color: #0B0F19;
+    padding: 14px 32px;
+    text-decoration: none;  /* Removes the default underline on links */
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+/* Micro-interaction: make it feel premium when hovered */
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
 }
