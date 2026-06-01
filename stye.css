@@ -1,0 +1,15 @@
+/* Target the entire page background */
+body {
+    background-color: #0F172A; /* Deep modern slate gray */
+    color: #F8FAFC;            /* Soft off-white text */
+    font-family: system-ui, sans-serif;
+    text-align: center;
+    padding-top: 150px;
+}
+
+/* Target just the h1 heading tag */
+h1 {
+    font-size: 3rem;
+    color: #38BDF8;            /* Bright electric blue accent */
+    letter-spacing: -1px;      /* Modern tight font tracking */
+}
