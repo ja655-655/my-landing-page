@@ -1,4 +1,6 @@
-/* Core Layout Normalization Matrix */
+/* ==========================================================================
+   0. CORE RESET & VARIABLES
+   ========================================================================== */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -13,7 +15,9 @@ body {
     scroll-behavior: smooth; 
 }
 
-/* 1. FROSTED GLASS NAVIGATION BAR CONFIGURATION */
+/* ==========================================================================
+   1. NAVIGATION ARCHITECTURE (FROSTED GLASS INTERACTION)
+   ========================================================================== */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -21,14 +25,12 @@ body {
     padding: 16px 40px;
     width: 100%;
     
-    /* Slightly lighter transparent slate background so the glass layer pops */
+    /* Premium Frosted Layer Engine */
     background-color: rgba(20, 27, 45, 0.7); 
-    
-    /* Blur rendering engines */
     backdrop-filter: blur(16px) saturate(180%);               
     -webkit-backdrop-filter: blur(16px) saturate(180%);       
-    
     border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    
     position: sticky; 
     top: 0;
     z-index: 1000; 
@@ -69,7 +71,9 @@ body {
 }
 .btn-contact:hover { background: #6366F1; }
 
-/* 2. SPLIT HERO GRID (50/50 Desktop Alignment Layout) */
+/* ==========================================================================
+   2. HERO LAYOUT SPLIT GRID
+   ========================================================================== */
 .split-hero {
     display: grid;
     grid-template-columns: 1fr 1fr; 
@@ -116,13 +120,15 @@ body {
     width: 320px;
     height: 320px;
     object-fit: cover; 
-    object-position: center 15%; /* Crops the photo down slightly to safe space above your head */
+    object-position: center 15%; 
     border-radius: 50%; 
     border: 2px solid rgba(255, 255, 255, 0.15); 
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); 
 }
 
-/* 2.5 TECH STACK INFINITE SLIDER LOOP PROPERTIES */
+/* ==========================================================================
+   3. TECH STACK CAROUSEL & TOOLTIP SYSTEM
+   ========================================================================== */
 .tech-section {
     max-width: 1200px;
     margin: 80px auto 40px auto; 
@@ -144,7 +150,6 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    /* Edge gradients that fade items smoothly at container endpoints */
     mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
 }
@@ -153,10 +158,15 @@ body {
     display: flex;
     gap: 40px;
     width: max-content;
-    animation: scrollTrack 25s linear infinite; /* Controlled, clean glide speed */
+    animation: scrollTrack 25s linear infinite; 
+}
+
+.slider-track:hover {
+    animation-play-state: paused; /* Locks track timeline layout on hover interaction */
 }
 
 .tech-icon {
+    position: relative;
     background-color: #1E293B; 
     border: 1px solid rgba(255, 255, 255, 0.05);
     color: #FFFFFF;
@@ -169,10 +179,64 @@ body {
     align-items: center;
     gap: 8px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    cursor: help; 
 }
 
-.slider-track:hover {
-    animation-play-state: paused; /* Pauses carousel movement on cursor interaction */
+.tech-icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* Tooltip Bubble Setup */
+.tech-icon::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 135%; 
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    
+    background-color: #1E293B;
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 1.4;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    
+    width: 200px;
+    white-space: normal;
+    text-align: center;
+    z-index: 5000;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease;
+}
+
+/* Tooltip Arrow Setup */
+.tech-icon::after {
+    content: "";
+    position: absolute;
+    bottom: 117%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #1E293B transparent transparent transparent;
+    
+    z-index: 5000;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease;
+}
+
+/* Hover State Animations */
+.tech-icon:hover::before,
+.tech-icon:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 @keyframes scrollTrack {
@@ -180,7 +244,9 @@ body {
     100% { transform: translateX(-50%); }
 }
 
-/* 3. CONTACT SECTION TARGET */
+/* ==========================================================================
+   4. CONTACT SECTOR MODULE
+   ========================================================================== */
 .contact-section {
     max-width: 1200px;
     margin: 0 auto;
@@ -192,7 +258,9 @@ body {
 .contact-section h2 { margin-bottom: 12px; }
 .email-link { color: #818CF8; font-size: 1.2rem; font-weight: 600; }
 
-/* Mobile Viewport Adaptation Engine */
+/* ==========================================================================
+   5. RESPONSIVE QUERY LAYER (MOBILE RENDERING OPTIMIZATIONS)
+   ========================================================================== */
 @media (max-width: 768px) {
     .navbar {
         padding: 16px 20px;
