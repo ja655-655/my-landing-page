@@ -127,19 +127,17 @@ body {
     width: 320px;
     height: 320px;
     object-fit: cover; 
-    object-position: center 15%; 
+    object-position: center 27%; 
     border-radius: 50%; 
     border: 2px solid rgba(255, 255, 255, 0.15); 
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); 
 }
 
 /* ==========================================================================
-   3. TECH STACK CAROUSEL (ULTRA-SMOOTH HARDWARE ACCELERATED)
+   3. TECH STACK CAROUSEL (DYNAMIC MAX-CONTENT CONFIGURATION)
    ========================================================================== */
 :root {
-    /* Updated calculation metrics for the expanded 9-item stack array to eliminate dead space completely */
     --gap-width: 16px;
-    --track-width: 1380px; 
 }
 
 .tech-section {
@@ -172,10 +170,12 @@ body {
 .slider-track {
     display: flex;
     gap: var(--gap-width); 
-    width: var(--track-width);
+    
+    /* Auto-evaluates exact size of elements to seamlessly scale on 4K/Ultrawide screens */
+    width: max-content; 
     flex-shrink: 0;
     
-    /* Force GPU rendering to bypass CPU sub-pixel layout rounding bugs */
+    /* GPU Accelerated Layer Promotion */
     will-change: transform;
     transform: translate3d(0, 0, 0);
     animation: scrollTrack 25s linear infinite;
@@ -360,14 +360,15 @@ body {
 }
 
 /* ==========================================================================
-   5. ANIMATION ENGINE (GPU LAYER COMPULSION)
+   5. ANIMATION ENGINE (50% TRANSITION MODEL WITH HOVER PAUSE)
    ========================================================================== */
 @keyframes scrollTrack {
     0% {
         transform: translate3d(0, 0, 0);
     }
     100% {
-        transform: translate3d(calc(-1 * var(--track-width) - var(--gap-width)), 0, 0); 
+        /* Loops infinitely backward by half the total array width layout cleanly */
+        transform: translate3d(calc(-50% - (var(--gap-width) / 2)), 0, 0); 
     }
 }
 
