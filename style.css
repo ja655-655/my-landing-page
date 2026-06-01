@@ -127,7 +127,7 @@ body {
     width: 320px;
     height: 320px;
     object-fit: cover; 
-    object-position: center 15%; 
+    object-position: center 27%; 
     border-radius: 50%; 
     border: 2px solid rgba(255, 255, 255, 0.15); 
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); 
