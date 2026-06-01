@@ -84,12 +84,12 @@ body {
 }
 
 .profile-img {
-    width: 100%;
-    max-width: 250px; /* Prevents the image from becoming overwhelmingly massive */
-    height: auto;
+    width: 250px;
+    height: 250px;
     object-fit: cover; /* Crops image neatly inside the dimensions without stretching */
-    border-radius: 12px; /* Soft corporate-modern rounded edges */
-    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);/* Soft corporate-modern rounded edges */
 }
 
 /* 3. CONTACT SECTION TARGET */
