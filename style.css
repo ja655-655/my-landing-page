@@ -1,5 +1,5 @@
 /* ==========================================================================
-   0. CORE RESET & VARIABLES
+   0. CORE RESET & BASE STYLES
    ========================================================================== */
 * {
     box-sizing: border-box;
@@ -16,7 +16,7 @@ body {
 }
 
 /* ==========================================================================
-   1. NAVIGATION ARCHITECTURE (FROSTED GLASS INTERACTION)
+   1. NAVIGATION ARCHITECTURE (FROSTED GLASS EFFECT)
    ========================================================================== */
 .navbar {
     display: flex;
@@ -72,7 +72,7 @@ body {
 .btn-contact:hover { background: #6366F1; }
 
 /* ==========================================================================
-   2. HERO LAYOUT SPLIT GRID
+   2. HERO LAYOUT SPLIT GRID (LAYER PROTECTED BUILD)
    ========================================================================== */
 .split-hero {
     display: grid;
@@ -82,6 +82,10 @@ body {
     margin: 0 auto;
     padding: 80px 40px;
     gap: 60px; 
+    
+    /* FIXED LAYER STACK: Guarantees text/image stay safely above the tech slider margins */
+    position: relative;
+    z-index: 10;
 }
 
 .hero-left {
@@ -127,12 +131,13 @@ body {
 }
 
 /* ==========================================================================
-   3. TECH STACK CAROUSEL & TOOLTIP SYSTEM
+   3. TECH STACK CAROUSEL & TOOLTIP SYSTEM (MATHEMATICALLY STABLE BUILD)
    ========================================================================== */
 .tech-section {
-    max-width: 1200px;
+    max-width: 100%; /* Spans full screen width to prevent early cut-off */
+    overflow: hidden; /* Cleans up and masks any bubbles outside the layout bounds */
     margin: 80px auto 40px auto; 
-    padding: 0 40px;
+    padding: 60px 0; /* Creates comfortable vertical margins for tooltips to float */
     text-align: center;
 }
 
@@ -145,11 +150,12 @@ body {
 }
 
 .slider-container {
-    overflow: hidden;
     width: 100%;
-    position: relative;
     display: flex;
     align-items: center;
+    position: relative;
+    
+    /* Seamless blur mask fade at edge horizons */
     mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
 }
@@ -157,16 +163,16 @@ body {
 .slider-track {
     display: flex;
     gap: 40px;
-    width: max-content;
-    animation: scrollTrack 25s linear infinite; 
+    width: max-content; /* Locks items to absolute single-line horizontal alignment */
+    animation: scrollTrack 30s linear infinite; /* Premium cinematic glide speed */
 }
 
 .slider-track:hover {
-    animation-play-state: paused; /* Locks track timeline layout on hover interaction */
+    animation-play-state: paused; /* Pauses carousel animation timeline on hover entry */
 }
 
 .tech-icon {
-    position: relative;
+    position: relative; 
     background-color: #1E293B; 
     border: 1px solid rgba(255, 255, 255, 0.05);
     color: #FFFFFF;
@@ -178,113 +184,24 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    cursor: help; 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.tech-icon img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
+.tech-icon:hover {
+    background-color: #2D3748;
+    transform: translateY(-2px);
 }
 
-/* Tooltip Bubble Setup */
-.tech-icon::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 135%; 
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    
-    background-color: #1E293B;
-    color: #FFFFFF;
-    font-size: 0.8rem;
-    font-weight: 400;
-    line-height: 1.4;
-    padding: 8px 14px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-    
-    width: 200px;
-    white-space: normal;
-    text-align: center;
-    z-index: 5000;
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease;
-}
-
-/* Tooltip Arrow Setup */
-.tech-icon::after {
-    content: "";
-    position: absolute;
-    bottom: 117%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    border-width: 6px;
-    border-style: solid;
-    border-color: #1E293B transparent transparent transparent;
-    
-    z-index: 5000;
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease;
-}
-
-/* Hover State Animations */
-.tech-icon:hover::before,
-.tech-icon:hover::after {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
+/* ==========================================================================
+   4. ANIMATION ENGINE
+   ========================================================================== */
 @keyframes scrollTrack {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-/* ==========================================================================
-   4. CONTACT SECTOR MODULE
-   ========================================================================== */
-.contact-section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 80px 40px 120px 40px; 
-    text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.contact-section h2 { margin-bottom: 12px; }
-.email-link { color: #818CF8; font-size: 1.2rem; font-weight: 600; }
-
-/* ==========================================================================
-   5. RESPONSIVE QUERY LAYER (MOBILE RENDERING OPTIMIZATIONS)
-   ========================================================================== */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 16px 20px;
+    0% {
+        transform: translateX(0);
     }
-
-    .split-hero {
-        grid-template-columns: 1fr; 
-        padding: 40px 20px;
-        gap: 40px;
-        text-align: center;
-    }
-
-    .hero-left { align-items: center; }
-    .hero-left h1 { font-size: 2.2rem; }
-
-    .tech-section {
-        margin: 40px auto 20px auto;
-        padding: 0 20px;
-    }
-    .slider-track { gap: 20px; }
-
-    .profile-img { 
-        width: 260px !important;  
-        height: 260px !important; 
-        object-position: center 15% !important; 
+    100% {
+        /* Loops halfway through the duplicated track for a seamless effect */
+        transform: translateX(-50%); 
     }
 }
