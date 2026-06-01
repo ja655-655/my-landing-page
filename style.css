@@ -14,17 +14,52 @@ body {
     scroll-behavior: smooth; 
 }
 
-/* 1. POSITIONING THE NAV LINKS */
+/* 1. OPTION 2: FROSTED GLASS NAVIGATION BAR */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Automatically pushes logo left, button right */
+    justify-content: space-between; /* Pushes logo left, button right */
     align-items: center;
-    padding: 24px 40px;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 16px 40px; /* Sleek, slim profile */
+    width: 100%;
+    
+    /* Transparent background color with backing blur filter */
+    background-color: rgba(11, 15, 25, 0.75); 
+    backdrop-filter: blur(12px);               /* Blurs text/images scrolling behind it */
+    -webkit-backdrop-filter: blur(12px);       /* Safari browser engine rendering safety */
+    
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Clean hairline divider link */
+    position: sticky; /* Locks navbar to the top viewport edge when scrolling */
+    top: 0;
+    z-index: 1000; /* Keeps nav layer safely stacked over content elements */
 }
 
-.logo { font-weight: 700; font-size: 1.2rem; }
+/* Alignment management to keep navbar elements centered with your 1200px grid margins */
+.logo { 
+    font-weight: 700; 
+    font-size: 1.2rem; 
+    color: #FFFFFF; 
+    letter-spacing: -0.5px;
+    max-width: 1200px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #FFFFFF; /* Preps future navigation links to be white */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+    opacity: 1; 
+}
 
 .btn-contact {
     background: #818CF8;
@@ -36,6 +71,7 @@ body {
     transition: background 0.2s ease;
 }
 .btn-contact:hover { background: #6366F1; }
+
 
 /* 2. THE CHOSEN SPLIT GRID (50/50 Midline Split) */
 .split-hero {
@@ -83,15 +119,17 @@ body {
     justify-content: center;
 }
 
+/* Desktop layout rules for your circle profile avatar framing */
 .profile-img {
     width: 320px;
     height: 320px;
     object-fit: cover; /* Crops image neatly inside dimensions without stretching */
-    object-position: center20%;
-    border-radius: 50%; /* Perfect circle implementation */
-    border: 2px solid rgba(255, 255, 255, 0.15); /* Clean border accent */
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); /* Soft shadow for layer depth */
+    object-position: center 15%; /* Shifts crop down slightly so your head is not cut off */
+    border-radius: 50%; /* Perfect circle layout styling */
+    border: 2px solid rgba(255, 255, 255, 0.15); /* Clean border glow accent */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); /* Premium card layer depth drop-shadow */
 }
+
 
 /* 3. CONTACT SECTION TARGET */
 .contact-section {
@@ -105,10 +143,11 @@ body {
 .contact-section h2 { margin-bottom: 12px; }
 .email-link { color: #818CF8; font-size: 1.2rem; font-weight: 600; }
 
+
 /* Mobile Adaptation */
 @media (max-width: 768px) {
     .navbar {
-        padding: 20px;
+        padding: 16px 20px;
     }
 
     .split-hero {
@@ -127,9 +166,10 @@ body {
         font-size: 2.2rem;
     }
 
+    /* Scaling safety properties so the circular avatar looks clean on phone screens */
     .profile-img { 
-        width: 260px;  /* Resized neatly for mobile screens */
-        height: 260px;
-        object-position: center20%;/* Kept equal to width to prevent stretching or turning oval */
+        width: 260px !important;  
+        height: 260px !important; 
+        object-position: center 15% !important; /* Preserves your head framing layout on mobile */
     }
 }
